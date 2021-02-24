@@ -30,8 +30,8 @@ public class FeatureExtractor extends Configured implements Tool {
     private static final String TYPE = "";
     private static final String URLS = "";
     private static final String QUERIES = "";
-    private static final String GLOBAL = "global";
-    private static final String QUERY= "query";
+    private static final String GLOBAL = "";
+    private static final String QUERY= "";
 
     public static class FeatureExtractorMapper extends Mapper<LongWritable, Text, IntWritable, Text> {
         private final HashSet<String> trainSet = new HashSet<>();
@@ -231,6 +231,8 @@ public class FeatureExtractor extends Configured implements Tool {
         job.getConfiguration().set(TRAIN, args[4]);
         job.getConfiguration().set(TEST, args[5]);
         job.getConfiguration().set(TYPE, args[6]);
+        job.getConfiguration().set(GLOBAL, args[7]);
+        job.getConfiguration().set(QUERY, args[8]);
         return job.waitForCompletion(true) ? 0 : 1;
     }
 
